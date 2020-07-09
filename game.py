@@ -17,7 +17,7 @@ class Game:
 
         return self.moves[p]
 
-    def player(self, player, move):
+    def play(self, player, move):
         self.moves[player] = move
 
         if player == 0:
