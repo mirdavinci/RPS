@@ -50,10 +50,10 @@ def threaded_client(conn, p, gameId):
         except:
             break
 
-    print("قطع ارتباط !")
+    print("Connection Lost")
     try:
         del games[gameId]
-        print("درحال بستن بازی...", gameId)
+        print("Closing Game", gameId)
     except:
         pass
     idCount -= 1
@@ -62,14 +62,14 @@ def threaded_client(conn, p, gameId):
 
 while True:
     conn, addr = s.accept()
-    print("متصل شد به :", addr)
+    print("Connected to:", addr)
     idCount += 1
     p = 0  # for current player
 
     gameId = (idCount - 1) // 2  # increase id by 1 when 2 ips connect
     if idCount % 2 == 1:  # if we did'nt have a pair for a new player
         games[gameId] = Game(gameId)
-        print("در حال ساخت بازی جدید...")
+        print("Creating a new game...")
     else:
         games[gameId].ready = True
         p = 1
