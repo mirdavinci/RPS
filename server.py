@@ -42,7 +42,10 @@ def threaded_client(conn, p, gameId):
                     elif data != "get":
                         game.play(p, data)
 
-                    conn.sendall(pickle.dumps(game))  # use "pickle" module to transfer python objects
+                    conn.sendall(pickle.dumps(game))  
+                    # use "pickle" module to transfer python objects
+                    # use "dumps" method to serialize info in order to send from server to client
+
             else:
                 break
         except:
