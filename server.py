@@ -6,18 +6,20 @@ from game import Game
 server = "localhost"
 port = 5555
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  
+# create a socket
+# SOCK_STREAM ==> create a TCP protocol
 
 try:
-    s.bind((server, port))
+    s.bind((server, port)) # binds to the address which  is specified as parameter specified as parameter
 except socket.error as e:
     str(e)
 
-s.listen()
+s.listen() # conncting to a remote address 
 print("منتظر برقراری ارتباط... , سرور استارت شد")
 
-# "connected" store ip addresses
-connected = set()
+connected = set() # "connected" stores ip addresses
+
 games = {}
 idCount = 0
 
@@ -29,7 +31,7 @@ def threaded_client(conn, p, gameId):
     reply = ""
     while True:
         try:
-            data = conn.recv(4096).decode()
+            data = conn.recv(4096).decode() # number of bytes
 
             if gameId in games:
                 game = games[gameId]
